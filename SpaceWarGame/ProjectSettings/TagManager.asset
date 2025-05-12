@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ships
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Attacks
+  - Interactable
   - 
   - 
   - 
