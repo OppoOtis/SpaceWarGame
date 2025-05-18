@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2395772158233909762}
   - component: {fileID: 4929241492266395256}
   - component: {fileID: 338531312164254577}
-  - component: {fileID: 5436035720194508511}
   - component: {fileID: 4145438580193025046}
-  m_Layer: 0
+  - component: {fileID: 7909830660929642187}
+  m_Layer: 9
   m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5436035720194508511
+--- !u!114 &4145438580193025046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302407420244419636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751012d1198b5c047ae3fd0cfe462a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  movementSpeed: 5
+  terrainLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  preferredPosition: {x: 0, y: 0, z: 0}
+  health: 0
+--- !u!136 &7909830660929642187
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,19 +127,6 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1.9999999
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4145438580193025046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6302407420244419636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 751012d1198b5c047ae3fd0cfe462a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0

@@ -64,7 +64,7 @@ namespace Astar.MultiThreaded
 // #if UNITY_EDITOR
 //                 pathfindRequest.pathfindJob.debugNodes.Dispose();
 // #endif
-                pathfindRequest.pathfindJob.closedSet.Dispose();
+                // pathfindRequest.pathfindJob.closedSet.Dispose();
                 pathfindRequest.pathfindJob.gCostNodes.Dispose();
                 pathfindRequest.callBack.Invoke(path, pathSuccess);
             }
@@ -83,7 +83,7 @@ namespace Astar.MultiThreaded
             pathfindRequest.pathfindJob.debugNodes.Dispose();
 #endif
             pathfindRequest.pathfindJob.gCostNodes.Dispose();
-            pathfindRequest.pathfindJob.closedSet.Dispose();
+            // pathfindRequest.pathfindJob.closedSet.Dispose();
                 
             Dispose();
         }

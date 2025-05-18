@@ -16,7 +16,7 @@ namespace Astar.MultiThreaded
     {
         public NativeList<float3> waypoints;
         public NativeArray<bool> pathSuccess;
-        public NativeList<int3> closedSet;
+        // public NativeList<int3> closedSet;
         public NativeHashMap<int3, float> gCostNodes;
         
 #if UNITY_EDITOR
@@ -46,7 +46,7 @@ namespace Astar.MultiThreaded
             waypoints = new NativeList<float3>(AllocatorManager.TempJob);
             neighbourNodes = new NativeArray<Node>(27, Allocator.TempJob);
             pathSuccess = new NativeArray<bool>(1, Allocator.TempJob);
-            closedSet = new NativeList<int3>(Allocator.TempJob);
+            // closedSet = new NativeList<int3>(Allocator.TempJob);
             gCostNodes = new NativeHashMap<int3, float>(10, Allocator.TempJob);
             
 #if UNITY_EDITOR
@@ -129,7 +129,7 @@ namespace Astar.MultiThreaded
                     counter++;
                     Node currentNode = openSet.RemoveFirst();
                     currentNode.locked = true;
-                    closedSet.Add(currentNode.gridIndex);
+                    // closedSet.Add(currentNode.gridIndex);
                     boxes[currentNode.gridBoxIndex].UpdateNode(nodes, currentNode);
 
 #if UNITY_EDITOR
@@ -180,13 +180,13 @@ namespace Astar.MultiThreaded
                         
                         Node neighbour = neighbourNodes[i];
                         int mask = walkableBitMask & currentNodeWalkableMask[i];
-                        bool isInClosedSet = false;
-                        for (int j = 0; j < closedSet.Length; j++)
-                        {
-                            if (EquateInt3(neighbour.gridIndex, closedSet[j]))
-                                isInClosedSet = true;
-                        }
-                        if (neighbour.gridBoxIndex == -1 || mask != currentNodeWalkableMask[i] || neighbour.locked || isInClosedSet)
+                        // bool isInClosedSet = false;
+                        // for (int j = 0; j < closedSet.Length; j++)
+                        // {
+                        //     if (EquateInt3(neighbour.gridIndex, closedSet[j]))
+                        //         isInClosedSet = true;
+                        // }
+                        if (neighbour.gridBoxIndex == -1 || mask != currentNodeWalkableMask[i] || neighbour.locked)
                         {
                             continue;
                         }
@@ -244,15 +244,10 @@ namespace Astar.MultiThreaded
                     currentNode.gridParentIndex.y - currentNode.gridIndex.y, 
                     currentNode.gridParentIndex.z - currentNode.gridIndex.z);
                 
-                GridIndexToWorldPos(currentNode.gridIndex, boxes[currentNode.gridBoxIndex].minPositionWS, out float3 endWorldPos);
-                waypoints.Add(endWorldPos);
-                
                 if ((directionNew.x != directionOld.x) || directionNew.z != directionOld.z)
                 {
-                    // GridIndexToWorldPos(currentNode.gridIndex, boxes[currentNode.gridBoxIndex].minPositionWS, out float3 endWorldPos);
-                    // waypoints.Add(endWorldPos);
-                    // GridIndexToWorldPos(currentNode.gridIndex, boxes[currentNode.gridBoxIndex].minPositionWS, out endWorldPos);
-                    // waypoints.Add(endWorldPos);
+                    GridIndexToWorldPos(currentNode.gridIndex, boxes[currentNode.gridBoxIndex].minPositionWS, out float3 endWorldPos);
+                    waypoints.Add(endWorldPos);
                 }
 
                 currentNode = boxes[currentNode.gridParentBoxIndex].GetNode(nodes, currentNode.gridParentIndex);
@@ -470,7 +465,7 @@ namespace Astar.MultiThreaded
         private readonly static int[] cachedNeighbourDistances = { 17, 14, 10, 0 };
         private float GetNeighbourDistance(int3 pos1, int3 pos2)
         {
-            return math.distance(pos1, pos2);
+            // return math.distance(pos1, pos2);
             // return (int)math.round(math.distance(pos1, pos2));
             int amountMatching = 0;
             amountMatching += pos1.x == pos2.x ? 1 : 0;
@@ -481,7 +476,7 @@ namespace Astar.MultiThreaded
 
         private float GetDistance(int3 nodeA, int3 nodeB)
         {
-            return math.distance(nodeA, nodeB);
+            // return math.distance(nodeA, nodeB);
             // return (int)math.round(math.distance(nodeA, nodeB));
             int dstX = math.abs(nodeA.x - nodeB.x);
             int dstY = math.abs(nodeA.y - nodeB.y);
